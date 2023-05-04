@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Qualidade de código
+
+[![DeepScan grade](https://deepscan.io/api/teams/21136/projects/24550/branches/758004/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=21136&pid=24550&bid=758004)
