@@ -1,0 +1,9 @@
+.heroesClasseEstilo{
+  cursor: pointer;
+}
+
+
+.heroesClasseEstilo li.selected{
+  background-color: black;
+  color: white
+}
