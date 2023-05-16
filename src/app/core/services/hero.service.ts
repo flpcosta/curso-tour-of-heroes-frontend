@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HEROES } from './mock-heroes';
-import { Hero } from './hero.model';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { Hero } from '../models/hero.model';
 import { MessageService } from './message.service';
+import { HEROES } from './mock-heroes';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class HeroService {
   }
 
   getHero(id: number): Observable<Hero>{
-    const hero = HEROES.find(hero => hero.id === id)!;
+    const hero = HEROES.find((hero) => hero.id === id)!;
     this.messageService.add(`HeroService: fetched hero id=${id}`); // Entre crase é uma string processada.
 
     return of(hero);
