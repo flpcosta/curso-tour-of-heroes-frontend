@@ -5,10 +5,12 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './components/page-not-found.component';
 
 const COMPONENTS = [
   ToolbarComponent,
-  MessagesComponent
+  MessagesComponent,
+  PageNotFoundComponent
 ]
 
 const MODULES= [
