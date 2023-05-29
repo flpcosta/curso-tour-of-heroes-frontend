@@ -65,10 +65,17 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "curso-tour-of-heroes-frontend:build:production"
+              "browserTarget": "curso-tour-of-heroes-frontend:build:production",
+              "fileReplacements": [
+                {
+                  "replace": "src/enviroments/enviroments.ts",
+                  "with": "src/enviroments/enviroments.prod.ts"
+                }
+              ]
             },
             "development": {
-              "browserTarget": "curso-tour-of-heroes-frontend:build:development"
+              "browserTarget": "curso-tour-of-heroes-frontend:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
