@@ -4,6 +4,7 @@ import { Hero } from '../models/hero.model';
 import { MessageService } from './message.service';
 import { HttpClient } from '@angular/common/http';
 import { enviroment } from 'src/enviroments/enviroments';
+import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,30 +12,24 @@ import { enviroment } from 'src/enviroments/enviroments';
 export class HeroService {
   private heroesUrl = `${enviroment.baseUrl}/heroes`; //'api/heroes';
 
-  loading = false;
-
   constructor(
     private http: HttpClient,
-    private messageService : MessageService){}
+    private messageService : MessageService,
+    private loadingService: LoadingService
+  ) {}
 
   // Doc: https://rxjs.dev/guide/observable
 
   // GET /heroes
   // Sobre o pipe e tap: https://rxjs.dev/guide/operators
   getHeroes(): Observable<Hero[]>{
-    this.loading = true;
-
+    this.loadingService.show();
     return this.http
       .get<Hero[]>(this.heroesUrl)
       .pipe(
         tap((heroes) => this.log(`fetched ${heroes.length} hero(es)`)),
-        finalize(() => this.loading = false)
+        finalize(() => this.loadingService.hide())
       );
-
-    //const heroes = of(HEROES); // Transforma o mock em um observável
-    //this.log('fetched heroes');
-    //return heroes;
-    //return throwError(new Error('ocorreu um problema!!'));
   }
 
   // GET /heroes/id
@@ -42,10 +37,6 @@ export class HeroService {
     return this.http.get<Hero>(`${this.heroesUrl}/${id}`).pipe(
       tap((hero) => this.log(`fetched hero id=${id} and name =${hero.name}`))
     );
-
-    //const hero = HEROES.find((hero) => hero.id === id)!;
-    //this.log(`fetched hero id=${id}`); // Entre crase é uma string processada.
-    //return of(hero);
   }
 
   private log(message: string): void{
