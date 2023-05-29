@@ -14,8 +14,7 @@ export class HeroService {
 
   constructor(
     private http: HttpClient,
-    private messageService : MessageService,
-    private loadingService: LoadingService
+    private messageService : MessageService
   ) {}
 
   // Doc: https://rxjs.dev/guide/observable
@@ -23,12 +22,10 @@ export class HeroService {
   // GET /heroes
   // Sobre o pipe e tap: https://rxjs.dev/guide/operators
   getHeroes(): Observable<Hero[]>{
-    this.loadingService.show();
     return this.http
       .get<Hero[]>(this.heroesUrl)
       .pipe(
-        tap((heroes) => this.log(`fetched ${heroes.length} hero(es)`)),
-        finalize(() => this.loadingService.hide())
+        tap((heroes) => this.log(`fetched ${heroes.length} hero(es)`))
       );
   }
 
