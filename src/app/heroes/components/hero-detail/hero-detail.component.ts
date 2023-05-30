@@ -34,4 +34,12 @@ export class HeroDetailComponent implements OnInit {
     this.location.back();
   }
 
+  save(): void{
+    this.heroService.update(this.hero).subscribe((hero) => this.goBack());
+  }
+
+  isFormValid(): boolean{
+    return !!this.hero.name.trim();
+  }
+
 }
